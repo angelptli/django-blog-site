@@ -9,9 +9,11 @@
 <h1>{{ post.title }}</h1>
 <small>
   By: {{ post.author.first_name }} {{ post.author.last_name }} - 
-  Posted On: {{ post.post_date }} - 
-  <a href="{% url 'update_post' post.pk %}">(Edit Post)</a>
-  <a href="{% url 'delete_post' post.pk %}">(Delete Post)</a>
+  Posted On: {{ post.post_date }}
+  {% if user.is_authenticated %}
+     - <a href="{% url 'update_post' post.pk %}">(Edit Post)</a>
+    <a href="{% url 'delete_post' post.pk %}">(Delete Post)</a>
+  {% endif %}
 </small><br/>
 <hr><br/>
 {{ post.body }}
