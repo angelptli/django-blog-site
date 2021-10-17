@@ -7,15 +7,19 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-  <h1>Update Post</h1>
-  <br /><br />
-  <div class="form-group">
-    <form method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="btn btn-secondary">Update</button>
-    </form>
-  </div>
+  {% if user.id == post.author.id %}
+    <h1>Update Post</h1>
+    <br /><br />
+    <div class="form-group">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Update</button>
+      </form>
+    </div>
+  {% else %}
+    You're not the author of this blog post.
+  {% endif %}
 {% else%}
   You must be logged in as a user to update blog posts
 {% endif %}

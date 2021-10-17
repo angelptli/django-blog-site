@@ -6,14 +6,22 @@
 
 {% block content %}
 
-<h1>Delete Post</h1>
-<br /><br />
-<h3>Delete: {{ post.title }}</h3>
-<div class="form-group">
-  <form method="POST">
-    {% csrf_token %}
-    <br/><strong>Are you sure?</strong><br/><br/>
-    <button class="btn btn-secondary">Delete Post!</button>
-  </form>
-</div>
+{% if user.is_authenticated %}
+  {% if user.id == post.author.id %}
+    <h1>Delete Post</h1>
+    <br /><br />
+    <h3>Delete: {{ post.title }}</h3>
+    <div class="form-group">
+      <form method="POST">
+        {% csrf_token %}
+        <br/><strong>Are you sure?</strong><br/><br/>
+        <button class="btn btn-secondary">Delete Post!</button>
+      </form>
+    </div>
+  {% else %}
+    You're not the author of this blog post...
+  {% endif %}
+{% else %}
+  You're not the author of this blog post....
+{% endif %}
 {% endblock %}

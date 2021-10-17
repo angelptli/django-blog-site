@@ -5,15 +5,18 @@
 {% endblock %}
 
 {% block content %}
-
 <h1>{{ post.title }}</h1>
 <small>
   By: {{ post.author.first_name }} {{ post.author.last_name }} - 
   Posted On: {{ post.post_date }}
+
   {% if user.is_authenticated %}
-     - <a href="{% url 'update_post' post.pk %}">(Edit Post)</a>
-    <a href="{% url 'delete_post' post.pk %}">(Delete Post)</a>
+    {% if user.id == post.author.id %}
+       - <a href="{% url 'update_post' post.pk %}">(Edit Post)</a>
+      <a href="{% url 'delete_post' post.pk %}">(Delete Post)</a>
+    {% endif %}
   {% endif %}
+
 </small><br/>
 <hr><br/>
 {{ post.body|safe }}
