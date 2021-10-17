@@ -16,6 +16,10 @@
       <button class="btn btn-secondary">Post</button>
     </form>
   </div>
+  <script>
+    var name = "{{ user.id }}";
+    document.getElementById("user_identifier").value = name;
+  </script>
 {% else%}
   You must be logged in as a user to add blog posts
 {% endif %}
