@@ -18,10 +18,11 @@ class HomeView(ListView):
 
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats)
+    # Replace hyphenated categories with space when searching for post
+    category_posts = Post.objects.filter(category=cats.replace('-', ' '))
 
     return render(request, 'categories.html', {
-        'cats': cats,
+        'cats': cats.title().replace('-', ' '),
         'category_posts': category_posts
         })
 

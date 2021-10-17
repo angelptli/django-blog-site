@@ -7,7 +7,7 @@
 <ul>
   {% for post in object_list %}
     <li><a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>  
-      - <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+      - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
       by: {{ post.author.first_name }} {{ post.author.last_name }} - 
       posted on: {{ post.post_date }} 
       <small>
