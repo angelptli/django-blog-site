@@ -19,6 +19,11 @@
 
 </small><br/>
 <hr><br/>
+
+{% if post.header_image %}
+  <img src="{{ post.header_image.url }}"><br/><br/>
+{% endif %}
+
 {{ post.body|safe }}
 <br/><br/>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a><br/><br/>
