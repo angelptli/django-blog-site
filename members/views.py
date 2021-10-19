@@ -8,6 +8,14 @@ from .forms import SignUpForm, EditProfileForm, PasswordChangingForm
 from myblog.models import Profile
 
 
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    template_name = 'registration/edit_profile_page.html'
+    success_url = reverse_lazy('home')
+    fields = ['bio', 'profile_pic', 'website_url', 'facebook_url',
+              'twitter_url', 'instagram_url', 'youtube_url']
+
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
@@ -32,6 +40,7 @@ class PasswordsChangeView(PasswordChangeView):
 
 def password_success(request):
     return render(request, 'registration/password_success.html', {})
+
 
 class UserRegisterView(generic.CreateView):
     # form_class = UserCreationForm

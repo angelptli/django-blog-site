@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Register
+  Edit Settings
 {% endblock %}
 
 {% block content %}
 
-<h1>Register</h1>
+<h1>Edit Settings</h1>
 <br /><br />
 
 {{ user.profile.bio }}
@@ -16,7 +16,7 @@
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-secondary">Profile</button>
+    <button class="btn btn-secondary">Update Settings</button>
   </form>
 </div>
 {% endblock %}
