@@ -7,6 +7,10 @@
 {% block content %}
 <h1>Blog Categories</h1>
   {% for item in cat_menu_list %}
-    <h4><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></h4>
+    <h4>
+      <a class="dropdown-item" href="{% url 'category' item|slugify %}" style="text-transform:capitalize">
+        {{ item }}
+      </a>
+    </h4>
   {% endfor %}
 {% endblock %}

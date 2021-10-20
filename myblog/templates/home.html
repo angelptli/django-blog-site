@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<br>
+<h1>Blog Posts</h1><br/>
 
-<h1>Posts</h1><br/>
 
-<ul>
   {% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>  
-      - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-      by: {{ post.author.first_name }} {{ post.author.last_name }} - 
-      posted on: {{ post.post_date }} 
+    
+      <a href="{% url 'article-detail' post.pk %}">
+        {{ post.title }}
+      </a>  
+      - {{ post.author.first_name }} {{ post.author.last_name }} - 
+      {{ post.post_date }}
+      <br>Topic: 
+      <a href="{% url 'category' post.category|slugify %}" style="text-transform:capitalize">
+        {{ post.category }}
+      </a>
+      
       <small>
         {% if user.is_authenticated %}
           {% if user.id == post.author.id %}
@@ -18,9 +25,10 @@
           {% endif %}
         {% endif %}
       </small><br/>
-      {{ post.snippet }}
-    </li>
+      Snippet: {{ post.snippet }}
+    
+    <br><br>
   {% endfor %}
-</ul>
+
 
 {% endblock %}
