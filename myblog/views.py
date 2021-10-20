@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 # List query sets and view in detail retrieved db info
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic import DeleteView
-from .models import Post, Category
-from .forms import PostForm, EditForm
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
@@ -86,6 +86,22 @@ class AddPostView(CreateView):
     template_name = 'add_post.html'
     # fields = '__all__'
     # fields = ('title', 'body')
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+    # fields = '__all__'
+
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+
+        return super().form_valid(form)
+
+
+    success_url = reverse_lazy('home')
 
 
 class UpdatePostView(UpdateView):
