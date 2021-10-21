@@ -57,6 +57,7 @@ def CategoryListView(request):
         'cat_menu_list': cat_menu_list
         })
 
+
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
@@ -94,12 +95,10 @@ class AddCommentView(CreateView):
     template_name = 'add_comment.html'
     # fields = '__all__'
 
-
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
 
         return super().form_valid(form)
-
 
     success_url = reverse_lazy('home')
 

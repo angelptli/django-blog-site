@@ -12,28 +12,27 @@ class ProfilePageForm(forms.ModelForm):
                   'twitter_url', 'instagram_url', 'youtube_url')
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
-	    	# 'profil_pic': forms.TextInput(attrs={'class': 'form-control'}),
-	    	'website_url': forms.TextInput(attrs={'class': 'form-control', }),
-	    	'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
-	    	'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
-	    	'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),			
-	    	'pinterest_url': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control', }),
+            'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'pinterest_url': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
 class SignUpForm(UserCreationForm):
     # Define the fields to include in the sign up form
     email = forms.EmailField(widget=forms.EmailInput(attrs={
-                             'class': 'form-control'}))
+        'class': 'form-control'}))
 
     first_name = forms.CharField(max_length=100,
                                  widget=forms.TextInput(attrs={
-                                 'class': 'form-control'}))
+                                     'class': 'form-control'}))
 
     last_name = forms.CharField(max_length=100,
                                 widget=forms.TextInput(attrs={
-                                'class': 'form-control'}))
-
+                                    'class': 'form-control'}))
 
     class Meta:
         # Use Django User model
@@ -43,7 +42,6 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email',
                   'password1', 'password2')
 
-    
     def __init__(self, *args, **kwargs):
         """Bootstrap the username, password1, and password2 fields."""
         super(SignUpForm, self).__init__(*args, **kwargs)
@@ -56,40 +54,39 @@ class SignUpForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
     # Define the fields to include in the sign up form
     email = forms.EmailField(widget=forms.EmailInput(attrs={
-                             'class': 'form-control'}))
+        'class': 'form-control'}))
 
     first_name = forms.CharField(max_length=100,
                                  widget=forms.TextInput(attrs={
-                                 'class': 'form-control'}))
+                                     'class': 'form-control'}))
 
     last_name = forms.CharField(max_length=100,
                                 widget=forms.TextInput(attrs={
-                                'class': 'form-control'}))
+                                    'class': 'form-control'}))
 
     username = forms.CharField(max_length=100,
                                widget=forms.TextInput(attrs={
-                               'class': 'form-control'}))
+                                   'class': 'form-control'}))
 
     last_login = forms.CharField(max_length=100,
                                  widget=forms.TextInput(attrs={
-                                 'class': 'form-control'}))
+                                     'class': 'form-control'}))
 
     is_superuser = forms.CharField(max_length=100,
                                    widget=forms.CheckboxInput(attrs={
-                                   'class': 'form-check'}))
+                                       'class': 'form-check'}))
 
     is_staff = forms.CharField(max_length=100,
                                widget=forms.CheckboxInput(attrs={
-                               'class': 'form-check'}))
+                                   'class': 'form-check'}))
 
     is_active = forms.CharField(max_length=100,
                                 widget=forms.CheckboxInput(attrs={
-                                'class': 'form-check'}))
+                                    'class': 'form-check'}))
 
     date_joined = forms.CharField(max_length=100,
                                   widget=forms.TextInput(attrs={
-                                  'class': 'form-control'}))
-
+                                      'class': 'form-control'}))
 
     class Meta:
         # Use Django User model
@@ -104,22 +101,21 @@ class EditProfileForm(UserChangeForm):
 class PasswordChangingForm(PasswordChangeForm):
     # Define the fields to include in the sign up form
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={
-                                    'class': 'form-control',
-                                    'type': 'password'
-                                    }))
+        'class': 'form-control',
+        'type': 'password'
+    }))
 
     new_password1 = forms.CharField(max_length=100,
                                     widget=forms.PasswordInput(attrs={
-                                    'class': 'form-control',
-                                    'type': 'password'
-                                    }))
+                                        'class': 'form-control',
+                                        'type': 'password'
+                                        }))
 
     new_password2 = forms.CharField(max_length=100,
                                     widget=forms.PasswordInput(attrs={
-                                    'class': 'form-control',
-                                    'type': 'password'
-                                    }))
-
+                                        'class': 'form-control',
+                                        'type': 'password'
+                                        }))
 
     class Meta:
         model = User

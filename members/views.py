@@ -15,13 +15,13 @@ class CreateProfilePageView(CreateView):
     template_name = "registration/create_user_profile_page.html"
     # fields = '__all__'
 
-
     def form_valid(self, form):
-        # Make user info availiable to the user filling out the form
+        # Make user info available to the user filling out the form
         # so that saving the form will save to the correct user
         form.instance.user = self.request.user
 
         return super().form_valid(form)
+
 
 class EditProfilePageView(generic.UpdateView):
     model = Profile
@@ -71,6 +71,5 @@ class UserEditView(generic.UpdateView):
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('home')
 
-    
     def get_object(self):
         return self.request.user

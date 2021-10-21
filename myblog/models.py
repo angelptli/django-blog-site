@@ -8,10 +8,8 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
-
     def __str__(self):
         return self.name
-
 
     def get_absolute_url(self):
         return reverse('home')
@@ -29,10 +27,8 @@ class Profile(models.Model):
     instagram_url = models.CharField(max_length=255, null=True, blank=True)
     youtube_url = models.CharField(max_length=255, null=True, blank=True)
 
-
     def __str__(self):
         return str(self.user)
-
 
     def get_absolute_url(self):
         return reverse('home')
@@ -50,14 +46,11 @@ class Post(models.Model):
     snippet = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='blog_posts')
 
-
     def total_likes(self):
         return self.likes.count()
 
-
     def __str__(self):
         return self.title + ' | ' + str(self.author)
-
 
     def get_absolute_url(self):
         # return reverse('article-detail', args=(str(self.id)))
@@ -70,6 +63,5 @@ class Comment(models.Model):
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
-        return '%s - %s' %  (self.post.title, self.name)
+        return '%s - %s' % (self.post.title, self.name)
